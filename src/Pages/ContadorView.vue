@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Hola mundo desde la vista</h1>
-    <Contador />
+    <Contador tit="Contador 1" :inicio="4+4" :mostrar="true"/>
+    <Contador tit="Contador 2" inicio="100" :mostrar="false"/>
   </div>
 </template>
 
