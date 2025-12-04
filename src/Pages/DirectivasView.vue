@@ -1,6 +1,8 @@
 <template>
-  <h1>Directivas Vista</h1>
-  <Directivas />
+  <div class="container-vista-directivas">
+   <h2>Prueba</h2>
+    <Directivas />
+  </div>
 </template>
 
 <script>
@@ -13,5 +15,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.container-vista-directivas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  font-size: 50px;
+
+}
+
 </style>
