@@ -2,19 +2,21 @@
   <div>
     <h1>Hola mundo</h1>
     <!-- <ContadorView /> -->
-    <DirectivasView/>
+    <!-- <DirectivasView/> -->
+    <PreguntaView/>
   </div>
 </template>
 
 <script>
-import ContadorView from "../src/Pages/ContadorView.vue";
-import DirectivasView from './Pages/DirectivasView.vue';
+// import ContadorView from "../src/Pages/ContadorView.vue";
+// import DirectivasView from './Pages/DirectivasView.vue';
+import PreguntaView from './Pages/PreguntaView.vue';
 
 export default {
   components: { 
-    ContadorView,
-    DirectivasView
-
+    // ContadorView,
+    // DirectivasView,
+    PreguntaView,
    },
 };
 </script>
