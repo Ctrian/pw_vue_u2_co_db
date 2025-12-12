@@ -1,23 +1,65 @@
 <template>
   <div class="centrar">
     <h1>Pregunta componente</h1>
-    <img
-      src="https://yesno.wtf/assets/yes/5-64c2804cc48057b94fd0b3eaf323d92c.gif"
+    <img :v-if="imagen"
+      :src="imagen"
       alt="No se puede visualizar"
     />
+    <div class="obscuro">
+
+    </div>
 
     <div class="pregunta-container">
-      <input type="text" name="" id="" placeholder="Hazme una pregunta" />
+      <input
+        v-model="pregunta"
+        type="text"
+        name=""
+        id=""
+        placeholder="Hazme una pregunta"
+      />
+      <p>Recuerda terminar con el signo de interrogación (? (ALT+63))</p>
 
-      <p>Recuerda terminar con el signo de interrogación (?)</p>
-      <h2>Sere millonario</h2>
-      <p>Yes, No</p>
+      <h2>{{pregunta}}</h2>
+      <p>{{respuesta}}</p>
+      <p></p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { consumirAPIfachada } from "../clients/YesNoClient.js";
+
+export default {
+  data() {
+    return {
+      pregunta: null,
+      respuesta: null,
+      imagen: null
+    };
+  },
+  watch: {
+    pregunta(value, oldValue) {
+      // console.log(value);
+      // console.log(oldValue);
+
+      if (value.includes("?")) {
+        //llamar Api
+        this.respuesta="pensando..."
+        this.consumir();
+      }
+    },
+  },
+  methods: {
+    async consumir() {
+      const res = await consumirAPIfachada();
+      console.log("Respuesta final");
+      console.log(res.answer);
+      this.respuesta = res.answer;
+      this.imagen = res.image;
+      console.log(res.image);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -29,7 +71,7 @@ export default {};
   flex-direction: column;
 }
 
-img {
+img , .obscuro  {
   height: 100vh;
   width: 100vw;
   max-height: 100%;
@@ -44,10 +86,10 @@ img {
   color: whitesmoke;
   min-height: 100vh; /* altura de toda la pantalla */
   display: flex;
-  /*flex-direction: column;*/ /* elementos uno debajo del otro */
+  flex-direction: column; /* elementos uno debajo del otro */
   justify-content: center; /* centrado vertical */
   align-items: center; /* centrado horizontal */
-  text-align: center;   
+  text-align: center;
 }
 
 input {
@@ -58,16 +100,19 @@ input {
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 p {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 h2 {
-    margin-top: 150px;
+  margin-top: 150px;
 }
 
+.obscuro {
+  background-color: black ;
+}
 
 </style>
