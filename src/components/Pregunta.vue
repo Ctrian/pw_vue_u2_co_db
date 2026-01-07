@@ -21,6 +21,8 @@
 
       <h2>{{pregunta}}</h2>
       <p>{{respuesta}}</p>
+
+      
       <p></p>
     </div>
   </div>
