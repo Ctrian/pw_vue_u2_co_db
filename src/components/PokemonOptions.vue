@@ -5,25 +5,30 @@
     <section>
       <h1>Componente Pokemon Opciones</h1>
       <ul>
-        <li>Pokemon 1</li>
-        <li>Pokemon 2</li>
-        <li>Pokemon 3</li>
-        <li>Pokemon 4</li>
+        <li
+          v-on:click="pasarPadre(pokemon.id)"
+          v-for="pokemon in listaPokemons"
+          :key="pokemon.id"
+        >
+          {{ pokemon.nombre }}
+        </li>
       </ul>
     </section>
-    <footer><button v-on:click="obtenerPokemonDatos()">holii</button></footer>
+    <footer></footer>
   </div>
 </template>
 
 <script>
-import { obtenerPokemonFachada } from "../clients/PokeApiClient.js";
-
 export default {
   methods: {
-    async obtenerPokemonDatos() {
-      let resultado = await obtenerPokemonFachada();
-      console.log(resultado);
-      // console.log(resultado.config.data[0].data.name);
+    pasarPadre(id) {
+      this.$emit('Seleccionado', id);
+    },
+  },
+  props: {
+    listaPokemons: {
+      type: Array,
+      required: true,
     },
   },
 };
