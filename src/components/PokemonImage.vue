@@ -24,6 +24,12 @@ export default {
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${this.pokemonId}.gif`;
     },
   },
+  beforeUnmount() {
+    console.log("beforeUnmount: justo antes de que el componente se destruya");
+  },
+  unmounted() {
+    console.log("unmounted: el componente ya fué removido del DOM y destruido");
+  },
 };
 </script>
 
